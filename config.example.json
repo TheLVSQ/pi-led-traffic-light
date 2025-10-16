@@ -1,0 +1,19 @@
+{
+  "led_count": 30,
+  "segments": {
+    "red": [0, 9],
+    "yellow": [10, 19],
+    "green": [20, 29]
+  },
+  "colors": {
+    "red": [255, 0, 0],
+    "yellow": [255, 180, 0],
+    "green": [0, 255, 0]
+  },
+  "schedule": {
+    "yellow_minute": 59,
+    "red_minute": 0,
+    "green_minute": 1
+  },
+  "scheduler_enabled": true
+}

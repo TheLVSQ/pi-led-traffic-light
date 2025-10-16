@@ -1,0 +1,75 @@
+<html>
+<head>
+  <title>LED Configuration</title>
+  <style>
+    body { font-family: Arial; background:#f2f2f2; padding:20px;}
+    .card { background:#fff; padding:20px; border-radius:10px; max-width:460px; margin:auto;
+            box-shadow:0 0 10px rgba(0,0,0,0.1);}
+    input { padding:6px; margin:4px 0; }
+    .row { display:flex; gap:10px; align-items:center; }
+    .row input[type=number] { width:90px; }
+    button { padding:10px 16px; background:#4CAF50; color:#fff; border:none; border-radius:6px; cursor:pointer; }
+    .msg { margin:8px 0; }
+    a { color:#007bff; text-decoration:none; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>LED Configuration</h2>
+    {% if message %}<div class="msg">{{ message }}</div>{% endif %}
+    <form method="POST">
+      <div class="row">
+        <label>Total LEDs:</label>
+        <input type="number" name="led_count" min="1" max="4096" value="{{ cfg.led_count }}">
+      </div>
+      <hr>
+      <div>
+        <h3>Segments (start–end)</h3>
+        <div class="row">
+          <label>Red:</label>
+          <input type="number" name="red_start"   value="{{ cfg.segments.red[0] }}">
+          <span>–</span>
+          <input type="number" name="red_end"     value="{{ cfg.segments.red[1] }}">
+          <input type="color"  name="red_color"
+                 value="#{{ '%02x%02x%02x' % (cfg.colors.red[0], cfg.colors.red[1], cfg.colors.red[2]) }}">
+        </div>
+        <div class="row">
+          <label>Yellow:</label>
+          <input type="number" name="yellow_start" value="{{ cfg.segments.yellow[0] }}">
+          <span>–</span>
+          <input type="number" name="yellow_end"   value="{{ cfg.segments.yellow[1] }}">
+          <input type="color"  name="yellow_color"
+                 value="#{{ '%02x%02x%02x' % (cfg.colors.yellow[0], cfg.colors.yellow[1], cfg.colors.yellow[2]) }}">
+        </div>
+        <div class="row">
+          <label>Green:</label>
+          <input type="number" name="green_start"  value="{{ cfg.segments.green[0] }}">
+          <span>–</span>
+          <input type="number" name="green_end"    value="{{ cfg.segments.green[1] }}">
+          <input type="color"  name="green_color"
+                 value="#{{ '%02x%02x%02x' % (cfg.colors.green[0], cfg.colors.green[1], cfg.colors.green[2]) }}">
+        </div>
+      </div>
+      <hr>
+      <div>
+        <h3>Schedule (minutes past each hour)</h3>
+        <div class="row">
+          <label>Yellow at:</label>
+          <input type="number" name="yellow_minute" min="0" max="59" value="{{ cfg.schedule.yellow_minute }}">
+        </div>
+        <div class="row">
+          <label>Red at:</label>
+          <input type="number" name="red_minute"    min="0" max="59" value="{{ cfg.schedule.red_minute }}">
+        </div>
+        <div class="row">
+          <label>Green at:</label>
+          <input type="number" name="green_minute"  min="0" max="59" value="{{ cfg.schedule.green_minute }}">
+        </div>
+      </div>
+      <br>
+      <button type="submit">💾 Save & Reload Scheduler</button>
+    </form>
+    <p><a href="/">⬅️ Back to Status</a></p>
+  </div>
+</body>
+</html>

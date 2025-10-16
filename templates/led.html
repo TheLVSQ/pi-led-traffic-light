@@ -1,0 +1,27 @@
+<html>
+<head>
+  <title>LED Control</title>
+  <style>
+    body { font-family: Arial; background: #f2f2f2; text-align: center; }
+    .btn { padding: 15px 30px; margin: 10px; border: none; border-radius: 8px;
+           color: white; font-size: 18px; cursor: pointer; }
+    .red { background: #e74c3c; }
+    .green { background: #27ae60; }
+    .blue { background: #2980b9; }
+    .white { background: #bdc3c7; color: black; }
+    .off { background: #333; }
+    a { display:block; margin-top:20px; color:#007bff; text-decoration:none; }
+  </style>
+</head>
+<body>
+  <h2>LED Control</h2>
+  <form method="POST">
+    <button name="color" value="red" class="btn red">Red</button>
+    <button name="color" value="green" class="btn green">Green</button>
+    <button name="color" value="blue" class="btn blue">Blue</button>
+    <button name="color" value="white" class="btn white">White</button>
+    <button name="color" value="off" class="btn off">Off</button>
+  </form>
+  <a href="/">⬅️ Back to Status</a>
+</body>
+</html>

@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.log
+
+# Virtual environment
+venv/
+.env/
+
+# Flask cache
+instance/
+*.sqlite3
+
+# System files
+*.swp
+.DS_Store
+
+# Config and credentials
+config.json
+/etc/
+users.json

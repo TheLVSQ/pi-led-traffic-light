@@ -1,0 +1,65 @@
+<html>
+<head>
+  <title>Pi Zero 2W Status</title>
+  <meta http-equiv="refresh" content="60">
+  <style>
+    body { font-family: Arial; background:#f2f2f2; color:#333; padding:20px;}
+    .card { background:#fff; padding:20px; margin:auto; width:420px; border-radius:10px;
+            box-shadow:0 0 10px rgba(0,0,0,0.1);}
+    .label { font-weight:bold; }
+    a { color:#007bff; text-decoration:none; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>Raspberry Pi Zero 2 W Status</h2>
+    <div style="text-align:center; margin-bottom:10px;">
+  🕒 <b>Local time:</b> <span id="clock">{{ current_time }}</span><br>
+  <small>
+    Next events → 
+    Yellow @ {{ next_events.yellow }},
+    Red @ {{ next_events.red }},
+    Green @ {{ next_events.green }}
+  </small>
+</div>
+
+<script>
+function updateClock() {
+  const el = document.getElementById('clock');
+  if (!el) return;
+  const now = new Date();
+  const hh = String(now.getHours()).padStart(2,'0');
+  const mm = String(now.getMinutes()).padStart(2,'0');
+  const ss = String(now.getSeconds()).padStart(2,'0');
+  el.textContent = `${hh}:${mm}:${ss}`;
+}
+updateClock();                    // draw immediately
+setInterval(updateClock, 1000);   // refresh every second
+</script>
+
+    <p><span class="label">Hostname:</span> {{ info.hostname }}</p>
+    <p><span class="label">IP Address:</span> {{ info.ip_address }}</p>
+    <p><span class="label">Wi-Fi:</span> {{ info.wifi_ssid }}
+      {% if info.wifi_ssid != "Not connected" %} ({{ info.wifi_signal }} dBm)
+      {% else %} 🚫 Disconnected{% endif %}</p>
+    <p><span class="label">CPU Temp:</span> {{ info.cpu_temp }} °C</p>
+    <p><span class="label">CPU Usage:</span> {{ info.cpu_percent }} %</p>
+    <p><span class="label">Memory Usage:</span> {{ info.memory.percent }} %</p>
+    <p><span class="label">Disk Usage:</span> {{ info.disk.percent }} %</p>
+    <p><span class="label">Uptime:</span> {{ info.uptime }}</p>
+
+    <hr>
+    <p><span class="label">LEDs:</span> {{ cfg.led_count }}</p>
+    <p><span class="label">Segments:</span>
+      R {{ cfg.segments.red[0] }}–{{ cfg.segments.red[1] }},
+      Y {{ cfg.segments.yellow[0] }}–{{ cfg.segments.yellow[1] }},
+      G {{ cfg.segments.green[0] }}–{{ cfg.segments.green[1] }}</p>
+    <p><span class="label">Schedule (min):</span>
+      Y {{ cfg.schedule.yellow_minute }},
+      R {{ cfg.schedule.red_minute }},
+      G {{ cfg.schedule.green_minute }}</p>
+
+    <p><a href="/config">⚙️ Configure</a> · <a href="/wifi">📶 Wi-Fi</a></p>
+  </div>
+</body>
+</html>

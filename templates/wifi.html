@@ -1,0 +1,28 @@
+<html>
+<head>
+    <title>Wi-Fi Setup</title>
+    <style>
+        body { font-family: Arial; background: #f2f2f2; color: #333; padding: 20px; }
+        .card { background: #fff; padding: 20px; width: 400px; border-radius: 10px; margin: auto;
+                 box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        input, button { width: 100%; padding: 10px; margin: 5px 0; }
+        button { background: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer; }
+        a { text-decoration: none; color: #007bff; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2>Wi-Fi Setup</h2>
+        <p><b>Current:</b> {{ current }}</p>
+        <form method="POST">
+            <label>SSID:</label>
+            <input name="ssid" type="text" placeholder="Wi-Fi name">
+            <label>Password:</label>
+            <input name="psk" type="password" placeholder="Wi-Fi password">
+            <button type="submit">Save and Connect</button>
+        </form>
+        <p>{{ message }}</p>
+        <p><a href="/">⬅️ Back to Status</a></p>
+    </div>
+</body>
+</html>
