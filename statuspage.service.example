@@ -1,0 +1,15 @@
+[Unit]
+Description=Raspberry Pi Status Web Dashboard
+After=network.target
+
+[Service]
+WorkingDirectory=/home/rrpi/statuspage
+ExecStart=/home/rrpi/statuspage/venv/bin/python /home/rrpi/statuspage/app.py
+Restart=always
+User=rrpi
+Environment="PATH=/home/rrpi/statuspage/venv/bin"
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

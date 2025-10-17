@@ -1,0 +1,9 @@
+Flask
+APScheduler
+psutil
+netifaces
+pytz
+rpi-ws281x
+Adafruit-Blinka
+adafruit-circuitpython-neopixel
+Werkzeug
